@@ -1,8 +1,8 @@
-is-prime: is prime
-not-prime: is not prime
-no-solution: Couldn‘t find a solution :(
-too-large: That number is too large :(
-not-even: Pick an even number.
+is-prime: 是素数
+not-prime: 不是素数
+no-solution: 找不到解決方案 :(
+too-large: 這個數字太大了 :(
+not-even: 選一個偶數。
 
-gcd-yes: It works!
-gcd-no: That doesn‘t seem to fit…
+gcd-yes: 它有效!
+gcd-no: 那似乎不适合…

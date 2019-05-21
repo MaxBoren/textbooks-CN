@@ -1,6 +1,6 @@
-# Divisibility and Primes
+# 整除和素数
 
-## Factors and Multiples
+## 因子和倍数
 
 > section: factors-and-multiples
 > id: divisibility1
@@ -33,68 +33,61 @@
             if i
               td(colspan=i)
 
-By now you should be comfortable with addition, subtraction and multiplication
-of integers. Division is slightly different, because you can’t always divide any
-integer by any other. For example 17 divided by 3 is not a whole number – it is
-somewhere in between 5 and 6. You either have to give a remainder (2), or
-express the answer as a decimal number (5.66).
+现在你应该熟悉了整数的加法，减法和乘法了。 除法稍有不同，因为你不能总是用一个数
+整除另一个数。例如：17被3除的话得到的不是一个整数 –结果是一个 介于5和6之间的数。
+你要么给出个余数(2)，或 将答案用十进制小数(5.66）表示。
 
     .row.padded
       .grow
         include svg/divisibility-1.svg
-        p.caption 12 is divisible by 3
+        p.caption 12 可以被 3 整除
       .grow
         include svg/divisibility-2.svg
-        p.caption 10 is not divisible by 4
+        p.caption 10 不能被 4 整除
 
-If you can divide a number __{.red}A__ by a number __{.blue}B__, without
-remainder, we say that __{.blue}B__ is a __factor__ (or __divisor__) of
-__{.red}A__, and that __{.red}A__ is a __multiple__ of __{.blue}B__. We often
-write __{.blue}B__|__{.red}A__, where the vertical bar simply means _“divides”_.
+如果你能将整数__{.red}A__分成__{.blue}B__等份, 且无剩余, 我们就称__{.blue}B__是
+__{.red}A__的一个__因子__(或 __除数__), 同时__{.red}A__是__{.blue}B__的一个
+__倍数__。我们通常写作__{.blue}B__|__{.red}A__, 该处的竖线只是表示 _“整除”_。
 
-For example, __{.green}7__ × 3 = __{.orange}21__, so __{.green}7__ is a
-[[factor|multiple]] of __{.orange}21__, __{.orange}21__ is a [[multiple|factor]]
-of __{.green}7__, and __{.green}7__|__{.orange}21__.
+例如: __{.green}7__ × 3 = __{.orange}21__, 因此__{.green}7__是__{.orange}21__
+的一个[[因子|倍数]], __{.orange}21__是__{.green}7__的一个[[倍数|因子]], 于是
+__{.green}7__|__{.orange}21__.
 
 ---
 > id: divisibility-game
 
-In this short game you have to determine which numbers are factors or multiples,
-as fast as possible. Click the [play button](->#divisibility-game_.toggle) to start.
+在下面这个简短的游戏中你必须尽可能快的确定哪些数字是 因子或倍数。点击 [播放按钮](->#divisibility-game_.toggle) 开始游戏。
 
     .box.problem-box
-      .box-title: h3 Factors and Multiples Quiz
+      .box-title: h3 因子和倍数测试
       x-gameplay.box-body
         .factors-row
           .factor-number ${x}
-          | is a
-          .factor-value
-            .factor-bubble: .btn.btn-blue factor
-            .factor-bubble: .btn.btn-blue multiple
-            .factor-bubble: .btn.btn-blue neither
-          | of
+          |是
           .factor-number ${y}
+          .factor-value
+            .factor-bubble: .btn.btn-blue 因子
+            .factor-bubble: .btn.btn-blue 倍数
+            .factor-bubble: .btn.btn-blue 都不是
+          |
 
 ---
 > id: factors
 
-It is often useful to find _all_ the divisors of a number. For example, the
-divisors of 60 are 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30 and 60.
+通常找出一个数的__所有__除数很有用. 例如：60的所有除数是 1, 2, 3, 4, 5, 6,
+10, 12, 15, 20, 30 和 60.
 
-Of course, you don’t want to check all numbers up to 60 if they are divisors.
-Instead, there is a simple technique which relies on the fact that divisors
-always appear in [[pairs|triples|halves]].
+当然，你可以不用检测有所60个数是不是它的除数，而是依据这么一个小技巧：除数总是[[成对|三个一组|折半]]出现。
 
 ---
 > id: factors1
 
-In the case of 60 we have 60 = 1 × 60 = 2 × 30 = 3 × 20 = 4 × 15 = 5 × 12 =
-6 × 10. Or, in a different notation,
+在60这个例子里, 我们有 60 = 1 × 60 = 2 × 30 = 3 × 20 = 4 × 15 = 5 × 12 =
+6 × 10. 或者, 用一个不同的表示法,
 
     +divisor-table([1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60], [5, 4, 3, 2, 1, 0])
 
-To find all divisors of a number we simply start at both ends of this list,
-until we meet in the middle.
+为了找到一个数的所有除数，我们从这个列表的两头向中间开始找, 直到在中点相遇。 
 
 ---
 > id: factors2
@@ -102,15 +95,14 @@ until we meet in the middle.
     x-slideshow
       .stage(slot="stage")
         +divisor-table([1, 2, 3, 6, 7, 14, 21, 42], [3, 2, 1, 0])
-      .legend(slot="legend") For example, the first divisor pair of 42 is simply 1 and 42, and we write them down with much space in between.
-      .legend(slot="legend") After 1 at the beginning, we check if 2 divides 42. It does, and the corresponding pair is 42 ÷ 2 = 21.
-      .legend(slot="legend") Next, we check if 3 divides 42. It does, and the corresponding pair if 42 ÷ 3 = 14.
-      .legend(slot="legend") Now we check if 4 divides 42. It does not, however, so we move on.
-      .legend(slot="legend") 5 also doesn’t divide 42 so we move on.
-      .legend(slot="legend") 6 does divide 42 again. Its pair is 42 ÷ 6 = 7. Notice how we’ve met in the middle after only a few attempts, without having to test all numbers from 7 to 42.
+      .legend(slot="legend") 例如：42的第一个除数对是1和42, 于是我们把这两个数写下来，并它们之间多些空格
+      .legend(slot="legend") 以1开了头之后, 我们检查2是否整除42。它能整除，而且相应的配对是 42 ÷ 2 = 21.
+      .legend(slot="legend") 下一个, 我们检查3是否整除42。它能整除，而且相应的配对是 42 ÷ 3 = 14.
+      .legend(slot="legend") 现在我们检查下4是否整除42。它不能整除，因此我们继续下一个。
+      .legend(slot="legend") 5也不能整除42，所以我们继续下一个。
+      .legend(slot="legend") 6又可以整除42。它的配对是42 ÷ 6 = 7。现在注意下，我们经过几步尝试后已经到达中点了, 并不用检测7到42间的所有数。
 
-The only special case with this method is for square number: in that case, you
-will meet at just a single number in the middle, like 64 = 8 × 8.
+这个方法的特殊地方在遇到平方数时: 这种情况下，你在中点会遇到只有一个数的情形，就像64 = 8 × 8.
 
     //- TODO Factorisation exercises
 
@@ -118,36 +110,30 @@ will meet at just a single number in the middle, like 64 = 8 × 8.
 > id: divisibility2
 > section: divisibility-rules
 
-## Divisibility Rules
+## 整除规律
 
-There are a few different rules that can make it surprisingly easy to check if a
-number is divisible by another. In this section we will have a look at some of
-them…
+有些许的不同规则能够简单的检测一个数是否能被另一个数整除。在本节我们将看看其中的一些规则…
 
 
-### Divisibility by 2 and 5
+### 被2和5整除
 
-Every number is divisible by 1. To determine if a number is divisible by 2, we
-simply have to check if it’s even: any number that ends in 0, 2, 4, 6, or 8 is
-divisible by 2.
+每个数都能被1整除。为了检测一个数是否能被2整除，我们只需简单的判断它是否为偶数：
+任何以0，2，4，6，或8结尾的数。
 
     +grid(30)
 
 ---
 > id: divisibility5
 
-To see if a number is divisibility by 5 we similarly just have to check that its
-last digit is 0 or 5:
+为了检测一个数是否能被5整除，仅仅只要判断它的末位数是否为0或5。
 
     +grid(30)
 
 ---
 > id: divisibility5a
 
-The reason why these rules for 2 and 5 are so simple has to do with our number
-system. The base of our number system is 10, which means that every digit in a
-number is worth 10 times as much as the next one to the right. If we take the
-number 6382 as an example,
+为什么2和5的规律如此简单? 这个原因和我们的数制(进制)有关。现在这个数制的基(进制)
+是10，这意味这一个数里的每位数都是其位于右边相邻位时的10倍。如果我们用数6382举例，
 
     table.base-10.base-10-fixed
       tr.base-10-large
@@ -161,7 +147,7 @@ number 6382 as an example,
         td: | =80
         td: | =2
 
-Now we can separate the last digit of a number from all its other digits:
+现在我们能够将一个数的末位数从其它的位数里分离开
 
     table.table-tiny
       tr.base-10-large
@@ -177,130 +163,115 @@ Now we can separate the last digit of a number from all its other digits:
         td +
         td #[strong.m-green 2]
 
-Both 2 and 5 are factors of 10, so they will [[always divide|never divide|sometimes divide]]
-__{.m-red}abc × 10__, no matter what the values of __{.m-red}a__, __{.m-red}b__
-and __{.m-red}c__ are. Therefore we only have to check the last digit: if
-__{.m-green}d__ is divisible by 2 then [[the whole number|abc]] is also
-divisible by 2. If __{.m-green}d__ is divisible by 5 then the whole number is
-divisible by 5.
+2和5两个都是10的因子，所以它们[[总能|绝不能|有时]]整除 __{.m-red}abc × 10__,
+不管__{.m-red}a__, __{.m-red}b__ 和 __{.m-red}c__ 的值是多少。因此我们仅仅只
+需检测最后一位数: 如果 __{.m-green}d__ 能够被2整除那么[[该数|abc]]也能被2整除。
+如__{.m-green}d__能被5整除那么该数就能被5整除。
 
 ---
 > id: divisibility4b
 
-The easiest is the divisibility rule for 10: we just need to check if the
-[[last digit is a 0|first digit is a 1|last digit is even]].
+最简单的是被10整除的规则: [[末位数是0|首位数是1|末位数是偶数]].
 
 ---
 > id: divisibility4
 
-### Divisibility by 4 and 8
+### 被4和8整除
 
-Unfortunately 4 doesn’t divide 10, so we can’t just look at the last number –
-but 4 _does_ divide 100, so we just have to slightly modify our rule from above.
-Now we write __{.m-red}ab__**{.m-green}cd** = __{.m-red}ab × 100__ +
-__{.m-green}cd__. We know that 4 will always divide __{.m-red}ab × 100__, so we
-have to look at the last [[two]] digits to check if a number if divisible by 4.
+不幸的是4不能整除10，所以我们不能通过最后一位数来检测 - 但是 4 _能_ 整除 100,
+所以我们只要稍微修改上面的规则。现在我们写成 __{.m-red}ab__**{.m-green}cd** 
+= __{.m-red}ab × 100__ + __{.m-green}cd__. 我们知道4总能整除__{.m-red}ab × 100__,
+所以我们只需要看看末[[2]]位数能否被4整除.
 
-For example, __{.m-green}24__ is divisible by 4 so __{.m-red}2735__**{.m-green}24**
-[[is also|is not]] divisible by 4, and __{.m-green}18__ is not divisible by 4 so
-__{.m-red}1947__**{.m-green}18** [[is also not|is also]] divisible by 4.
+例如，__{.m-green}24__ 能被4整除，所以__{.m-red}2735__**{.m-green}24**
+[[也能|不能]] 被4整除, 而 __{.m-green}18__ 不能被4整除所以
+__{.m-red}1947__**{.m-green}18** [[也不能|也能]] 被4整除。
 
 ---
 > id: divisibility4a
 
-The divisibility rules for 8 get even more difficult, because 100 is not
-divisible by 8. Instead we have to go up to [[1000|800|108]] and look at the
-last [[three]] digits of a number.
+被8整除的规则更加复杂点，因为100也不能被8整除。因而我们要继续增大数字到
+[[1000|800|108]]然后看看末[[3]]位数。
 
-For example, __{.m-green}120__ is divisible by 8 so
-__{.m-red}271__**{.m-green}120** is also divisible by 8.
+例如，__{.m-green}120__ 能被8整除, 所以__{.m-red}271__**{.m-green}120** 
+能够被8整除。
 
 ---
 > id: divisibility3a
 
-### Divisibility by 3 and 9
+### 被3和9整除
 
-The divisibility rule for 3 is rather more difficult. 3 doesn’t divide 10, and
-it also doesn’t divide 100, or 1000, or any larger power of 10. Simply looking
-at the last few digits of a number isn’t going to work.
+被3整除的规则愈加的复杂，3不能整除10，而且它也不能整除100，甚至1000，甚至10的
+任意次方的数。简单的查看数的末几位也无效。
 
-Instead we need to use the __digit sum__ of a number, which is simply the sum of
-all its individual digits. For example, the digit sum of ${13×n+123}{n|3|0,20,1}
-is ${digitSumString(123+13×n)} = ${digitSum(123+13×n)} and the digit sum of 3524
-is [[14]].
+我们需要另一种方法：数的__位和__, 就是简单的把一个数每位上的数字相加。例如，
+${13×n+123}{n|3|0,20,1}的位和是 ${digitSumString(123+13×n)} = ${digitSum(123+13×n)}
+, 因此3524的位和是[[14]].
 
 ---
 > id: divisibility3b
 
     +grid(40, function(n) { if (!(n % 3)) { var s = '' + n; return +s[0] + (+s[1] || 0); } })
 
-Here we’ve highlighted all numbers which are multiples of three. You can see
-that their digit sums are always [[a multiple of 3|either 0 or 3|odd numbers]].
+这里我们已经把所有3的倍数高亮了。你可以看到它们的位和总是[[3的倍数|0或3|奇数]]。
 
-{.reveal(when="blank-0")} So to determine if any number is divisible by 3, you
-just have to calculate its digit sum, and check if the result is also divisible
-by 3.
+{.reveal(when="blank-0")} 因此，判断一个数是否能被3整除，你只需计算它的位和，
+然后判断计算结果是否也能被3整除。
 
 ---
 > id: divisibility9
 
-Next, let’s look at multiples of 9:
+下一个，让我们看看9的倍数:
 
     .number-grid
       for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
         .number-cell.yellow= x*9
           .number-badge= (x == 11 ? 18 : 9)
 
-It seems that all the numbers divisible by 9 have a digit sum which is
-[[also|not]] divisible by 9. _{span.reveal(when="blank-0")}For example, the
-digit sum of 4752 is [[18]], so 4752 [[is|is not]] divisible by 9._
+看起来，所有能被9整除的数它的位和[[也|不]]能被9整除。 
+_{span.reveal(when="blank-0")}例如，4752的位和是[[18]], 所以4752 [[ 能|不能]]
+被9整除。_
 
 ---
 > id: divisibility9a
 
-Of course, these curious patterns for numbers divisible by 3 and 9 must have
-some reason – and like before it has to do with our base 10 numbers system. As
-we saw, writing the number __{.m-red}6__**{.m-blue}3**__{.m-green}8__**{.m-yellow}4**
-really means
+当然，被3和9整除的数具有的奇特模式肯定有什么原因 –  就像之前的和我们的数基(10进制)
+相关。 正如我们知道，写下数__{.m-red}6__**{.m-blue}3**__{.m-green}8__**{.m-yellow}4**
+的同时也是可以这样表示:
 
 {.text-center} __{.m-red}6 × 1000__ + __{.m-blue}3 × 100__ + __{.m-green}8 × 10__ + __{.m-yellow}4__.
 
-We can split up each of these products into two parts:
+我们能将每个乘积拆分成两个部分:
 
 {.text-center} __{.m-red}*{span.digit-sum-else}6 × 999* + *{span.digit-sum-is}6*__ +
 __{.m-blue}*{span.digit-sum-else}3 × 99* + *{span.digit-sum-is}3*__ +
 __{.m-green}*{span.digit-sum-else}8 × 9* + *{span.digit-sum-is}8*__ +
 __{.m-yellow.digit-sum-is}4__.
 
-Of course, __{.m-green}9__, __{.m-blue}99__, __{.m-red}999__, and so on are
-always divisible by 3 (or by 9). All that remains is to check that what’s left
-over is also divisible by 3 (or 9):
+当然, __{.m-green}9__, __{.m-blue}99__, __{.m-red}999__, 诸如等等都总是能被3
+(或被9)整除。剩下的事就是：检测所有那些剩下的是否也能被3(或9)整除。
 
 {.text-center} __{.m-red}6__ + __{.m-blue}3__ + __{.m-green}8__ + __{.m-yellow}4__
 
-This just happens to be the digit sum! So if the <x-target no-margins
-to=".digit-sum-is">digit sum</x-target> is a multiple of 3, and we
-know that <x-target no-margins to=".digit-sum-else">everything else</x-target>
-is a multiple of 3, then the result must also be a multiple of 3.
+这正好是数位和! 所以如果它的<x-target no-margins to=".digit-sum-is">数位和
+</x-target> 是3的一个倍数, 而且我们知道<x-target no-margins to=".digit-sum-else">
+其它每部分</x-target>也是3的倍数, 那么其结果也一定是3的一个倍数。
 
 ---
 > id: divisibility6
 > goals: btn2 btn3
 
-### Divisibility by 6
+### 被6整除
 
-We’ve still skipped number 6 – but we’ve already done all the hard work.
-Remember that 6 = 2 × 3.
+目前我们还是跳过了数字6 – 但是我们已经完成了所有的难搞的工作。记住一点 6 = 2 × 3.
 
     +grid(40)
     p.btn-row.text-center(style="margin-bottom:1em")
-      button.btn.btn-small(data-display="visibility") Show multiple of 2
-      button.btn.btn-small(data-display="visibility") Show multiple of 3
+      button.btn.btn-small(data-display="visibility") 显示2的倍数
+      button.btn.btn-small(data-display="visibility") 显示3的倍数
 
-To check if a number is divisible by 6 we just have to check that it is
-divisible by 2 [[and also|or]] divisible by 3. Note that this happens to work
-for 6, but certainly not for _any_ number that is the product of two others.
-More on that later…
+为了检测一个数是否能被6整除我们只用检测它是否能被2整除[[同时也|或]]被3整除。
+注意到这对6有效，但是不一定对 _任意_ 两个数的乘积数有效。关于那我们稍后再论…
 
     //- TODO Practice exercises
 
@@ -308,24 +279,21 @@ More on that later…
 > id: primes
 > section: prime-numbers
 
-## Prime Numbers
+## 素数(又叫质数)
 
-When calculating these divisor pairs, it can happen that a number doesn’t have
-any divisors except for the first pair. One example is 13 – its only divisors
-are 1 and 13 itself. These special numbers are called __Prime numbers__. They
-can’t be broken up into products of smaller numbers, which, in a way, makes them
-the “atoms of numbers”.
+我们在计算这些除数对时，会遇到一些只有第一对除数的数。一个例子是 13 – 它只有
+除数1和13自己。这些特殊的数被称为__素数__. 它们不能被拆成两个稍小的数的乘积。
+某种程度上，它们成了“原子数”。
 
-Note that 1 itself is _not_ a prime number, so the first few prime numbers are
-2, 3, 5, 7, 11, 13, …
+注意 1 自身 _不是_ 一个素数, 所以首批的一些素数是 2, 3, 5, 7, 11, 13, …
 
     //- TODO Exercises
 
 ---
 > id: primes1
 
-Any number which is not prime can be written as the product of prime numbers: we
-simply keep dividing it into more parts until all factors are prime. For example,
+任意不是素数的数都能被写成素数的乘积形式：我们只要不断的把它分解成更多的部分直到所有
+因子都是素数。例如,
 
     table.table-tiny
       tr
@@ -357,62 +325,55 @@ simply keep dividing it into more parts until all factors are prime. For example
         td ×
         td: .number-ball.yellow 7
 
-Now 2, 3 and 7 are prime numbers and can’t be divided further. The product
-2 × 2 × 3 × 7 is called the __prime factorisation__ of 84, and 2, 3 and 7 are
-its __prime factors__. Note that some primes, like 2 in this case, can appear
-multiple times in a prime factorisation.
+现在 2, 3 和 7 是素数而且不能再被分解了。2 × 2 × 3 × 7 被称为84的 __质因式__,
+同时 2, 3 和 7 是它的 __质因子__. 注意一些素数，比如这里的2，可以在一个质因式
+里出现多次。
 
-Every integer has a prime factorisation and no two integers have the same prime
-factorisation. Furthermore, there is only a single way to write any number as a
-product of primes – unless we count different orderings of the primes. This is
-called the __Fundamental Theorem of Arithmetic__ (FTA).
+每个整数都有一个质因式，但是没有两个数的质因式是一样的。更进一步，任意整数
+都只有一种质因式写法 – 除非我们把素数不同顺序算成不同写法。这就是 __算术基本定理(FTA-Fundamental Theorem of Arithmetic)__.
 
-Using the FTA can make many problems in mathematics much easier: we divide
-numbers into their prime factors, we solve the problem for the individual
-primes, which can often be much easier, and then we combine these results to
-solve the initial problem.
+利用算术基本定理能够使许多数学问题变得简单多了: 我们做多个数的质因数分解时，我们先独立
+分解一个个数来解决问题，这样通常会简单很多，然后把这些结果组合起来从而解决原来
+的问题。
 
     //- TODO Exercises
 
 ---
 > id: eratosthenes
 
-### The Sieve of Eratosthenes
+### 埃拉托色尼筛选法
 
-It turned out to be quite difficult to determine if a number is prime: you
-always had to find _all_ its prime factors, which gets more and more challenging
-as the numbers get bigger. Instead, the Greek mathematician [Eratosthenes of
-Cyrene](bio:eratosthenes) came up with a simple algorithm to find all prime
-numbers up to 100: the __Sieve of Eratosthenes__.
+结果, 很难确定一个数是否是素数: 你总是必须找到它 _全部_ 的质因数, 随着数变大
+而变得越难确定。 然而，希腊数学家 - [昔兰尼古城的埃拉托色尼](bio:eratosthenes)想到了
+一个简单的算法来找出100内的全部素数: __埃氏素数筛选法__.
 
     x-slideshow
       .stage(slot="stage")
         +grid(100)
-      .legend(slot="legend") First we need to write down all numbers up to 100.
-      .legend(slot="legend") We know that 1 is not prime, so we delete it.
-      .legend(slot="legend") The smallest prime number is #[strong.m-red 2]. Any multiple of 2 can’t be prime, since it has 2 as a factor. Therefore we can cross out all multiples of 2.
-      .legend(slot="legend") The next number in our list is #[strong.m-blue 3] – again a prime number. All multiples of 3 can’t be prime, since they have 3 as a factor. Therefore we can cross these out as well.
-      .legend(slot="legend") The next number, 4, is already crossed out so we move on to #[strong.m-green 5]: it is a prime number and again we cross out all multiples of 5.
-      .legend.md(slot="legend") The next prime number must be [[7]], since 6 is crossed out. Once more, we cross out all of its multiples.
-      .legend.md(slot="legend") The next prime number is [[11]]. Notice, however, that all of its multiples are [[already crossed out|multiples of 3]]. The same is actually true for all other remaining numbers. Therefore all these remaining numbers must be prime.
+      .legend(slot="legend") 首先我们需要写下100内的所有整数
+      .legend(slot="legend") 我们知道1不是素数，所以删掉它。
+      .legend(slot="legend") 最小的素数是#[strong.m-red 2]. 任何2的倍数都不是素数，因为它有个因子2。所以我们能够删掉所有2的倍数。
+      .legend(slot="legend") 在我们列表里下一个数是#[strong.m-blue 3] – 又是个素数. 所有3的倍数都不是素数，因为它有因子3, 所以我们也能删掉它们。
+      .legend(slot="legend") 下一个数4, 已经被删掉了，所以我们继续下个数#[strong.m-green 5]: 它又是个素数, 同理我们删掉所有5的倍数。
+      .legend.md(slot="legend") 下一个素数一定是[[7]], 因为6已经被删掉了. 再一次的，我们删掉它的倍数。
+      .legend.md(slot="legend") 下一个素数是[[11]]. 但是请注意，它的所有倍数都是[[已被删掉|3的倍数]]。对于剩下的所有其它数也是一样的情形。因此所有这些剩下的数都必定是素数。
 
-Now we can count that, in total, there are [[25]] prime numbers less than 100.
+现在我们可以数数了，总共有[[25]]个素数小于100。
 
 ---
 > id: primes3
 
-### How many Prime Numbers are there?
+### 有多少个素数？
 
 ::: column.grow
-Of course we can also use the Sieve of Eratosthenes to find larger prime
-numbers. There are 21 primes between 100 and 200, 16 primes between 200 and 300,
-17 primes between 400 and 500 and only 11 between 10,000 and 10,100.
+当然我们能够用埃氏素数筛选法找更大的数素。在100到200间有21个素数, 200到300间
+有16个素数，在400到500间有17个素数，而且10000到10100间只有11个。
 
-The primes seem to keep getting more and more spread out, but do they ever stop?
-Is there a _biggest_ or a _last_ prime number?
+素数看起来在不断的分散了，但是它们会终止吗？
+存在一个 _最大_ 或 _最后_ 的素数吗?
 
-The ancient Greek mathematician [Euclid of Alexandria](bio:euclid) first proved
-that there are infinitely many prime numbers, using the following argument:
+古希腊数学家[亚历山大的欧几里德](bio:euclid) 第一个证明了存在无穷多个素数的，
+通过下面的论证:
 ::: column(width=220)
 
     x-media(lightbox width=220 height=300 src="images/euclid.jpg")
@@ -420,17 +381,17 @@ that there are infinitely many prime numbers, using the following argument:
 :::
 
     ol.proof
-      li Suppose there were only finitely many prime numbers.
+      li 假设只有有限多个素数。
         .text-center #[em.number-ball.blue P], #[em.number-ball.blue P], #[em.number-ball.blue P], #[em.number-ball.blue P], #[em.number-ball.blue P]
-      li Let us multiply all of them together, to get a very large number which we call #[em N].
+      li 让我们把它们全部相乘，得到一个非常大的数，我们把它称为#[em N].
         .text-center #[em.number-ball N] = #[em.number-ball.blue P] × #[em.number-ball.blue P] × #[em.number-ball.blue P] × #[em.number-ball.blue P] × #[em.number-ball.blue P]
-      li Now let’s think about #[em N] + 1. Any prime number that divides #[em N] can’t also  divide #[em N] + 1. And since all prime numbers we have found so far divide #[em N], none of these can also divide #[em N] + 1.
+      li 现在我们思考下#[em N] + 1. 任何整除#[em N]的素数都不能整除#[em N] + 1. 而且因为所有整除#[em N]的素数都已经被找到了, 它们中也不存在能够整除#[em N] + 1的.
         .text-center #[em.number-ball.blue P], #[em.number-ball.blue P], #[em.number-ball.blue P], #[em.number-ball.blue P], #[.number-ball.blue P] #[span.divides] #[em.number-ball N]
         .text-center #[em.number-ball.blue.cross P], #[em.number-ball.blue.cross P], #[em.number-ball.blue.cross P], #[em.number-ball.blue.cross P], #[.number-ball.blue.cross P] #[span.divides] #[em.number-ball N] + 1
-      li.md We know from the [Fundamental Theorem of Arithmetic](gloss:fta) that #[em N] + 1, must have a prime factor. Either #[em N] + 1 is itself prime, or there is some other new prime #[em P’] that divides #[em N] + 1.
+      li.md 根据[算术基本定理](gloss:fta)我们知道#[em N] + 1必定有个质因数#[em P’], 它不是#[em N] + 1自身，也不是其它新的能够整除#[em N] + 1的素数。
         .text-center #[em.number-ball.green P’] #[span.divides] #[em.number-ball N] + 1
-      li In both cases we’ve found a new prime not in our original list – but we assumed that #[em all] primes were in this list.
-      li Clearly something went wrong! But since steps #[span.proof-step 2]–#[span.proof-step 4] were definitely valid, the only possibility is that our initial assumption in #[span.proof-step 1] was wrong. This means there must actually be infinitely many primes.
+      li 在这两种情况下，我们找到了一个新的素数它却不在我们的原始列表中，但我们又假设了所有素数都在这个列表中。
+      li 显然出了什么问题！但是从步骤#[span.proof-step 2]–#[span.proof-step 4]都是绝对有效的，唯一的可能性是我们在步骤#[span.proof-step 1]中的初始假设是错误的。这意味着一定有无穷多个的素数。
 
     // Notice that any prime that divides N cannot divide N + 1. (If it would,
     // it also had to divide the difference between N and N + 1 which is 1. But
@@ -439,29 +400,24 @@ that there are infinitely many prime numbers, using the following argument:
 ---
 > id: primes4
 
-Euclid’s explanation is one of the first examples in history of a formal
-mathematical __proof__ – a logical argument that shows a statement must
-definitely be true. This example is often called __proof by contradiction__: we
-start with an assumption, deduce something impossible, and thus know that our
-assumption must be incorrect.
+欧几里得的解释是历史上第一个正式数学__证明__的例子 — 表明一个陈述一定是正确的
+逻辑论证。这个例子通常被称为__反证法__：我们从一个假设开始，推断出一些不可能的事情，从而知道我们的假设一定是错误的。
 
 ---
 > id: prime-test
 > goals: calculator
 > section: the-distribution-of-primes
 
-## The Distribution of Primes
+## 素数的分布
 
-The easiest way to check if a number is prime, is to try to divide it by all
-smaller integers. Computers can do this very quickly and efficiently. For _very
-large_ numbers, with hundreds of digits, there are also more efficient
-algorithms. Some of these even use probability to determine if a number is
-_almost certainly_ prime.
+检测素数的最简单方法是，尝试用所有比它小的数去整除它。计算机能非常快速而有效的做这个
+工作。即使对于有着数百位的__非常__大的数，也存在许多高效的算法。甚至其中一些
+算法是利用概率来__近乎确定__的测定一个数是否为素数。
 
-Here is a calculator that allows you to check if any number is prime:
+这是一个可以让你检查任何数字是否是素数计算器:
 
     .calculator
-      h3 Prime Checker
+      h3 素数检测程序
       input(type="number" min="2")
       p.result.var ${result}
 
@@ -470,21 +426,18 @@ Here is a calculator that allows you to check if any number is prime:
 
 ::: column.grow
 
-Throughout history, people have tried to find larger and larger prime numbers.
-In 1460, the largest known prime was 131,071. In 1772, [Leonard Euler](bio:euler)
-showed that 2,147,483,647 is also prime.
+纵观历史, 人们试图不断的找到越来越大的素数。在1460年，已知的最大素数是13,1071。
+在1772年, [莱昂纳多·欧拉](bio:euler)展示了2,147,483,647也是素数。
 
-With the arrival of computers in the 20th century, calculating large primes
-became much easier. The largest currently known prime was discovered in
-December 2018 and has 24,862,048 digits. You would need 8000 sheets of paper to
-print it out!
+随着20世纪计算机的到来，计算大素数变得容易多了。目前我们知道的最大素数是在
+2018年12月发现的，而且它有24,862,048位数。你需要8000张纸才能把它完整打印出来！
 
 ::: column(width=300)
 
     img(src="images/network.jpg" width=300 height=200)
 
-{.caption} GIMPS (_Great Internet Mersenne Prime Search_) is a collaborative
-project, where volunteers can find primes using free software.
+{.caption}GIMPS（_伟大的互联网梅森素数研究_）是一个协作项目，志愿者可以使用
+免费软件寻找数素。
 
 :::
 
@@ -492,16 +445,15 @@ project, where volunteers can find primes using free software.
 > id: prime-generator
 > goals: calculator
 
-Calculating these large prime numbers might seem like just a waste of time, but
-later in this course you’ll learn about various real life applications where
-computers have to use large primes.
+计算求解这些大素数也许看来像在浪费时间，但是在这堂课程后面你将了解到各种实际
+应用程序，其中的计算机必须使用大素数。
 
-Here you can generate your own prime numbers with a given number of digits:
+这里可以按照指定的位数生成你自己的大素数：
 
     .calculator
-      h3 Prime Generator
-      p.md Number of digits: ${d}{d|6|2,16,1}
-      p(style="margin: 10px 0"): button.btn.btn-white Generate
+      h3 素数生成器
+      p.md 位数: ${d}{d|6|2,16,1}
+      p(style="margin: 10px 0"): button.btn.btn-white 生成
       p.result.var ${result}
 
 ---
@@ -509,11 +461,10 @@ Here you can generate your own prime numbers with a given number of digits:
 
     //- Stanislaw M. Ulam was doodling during the presentation of a "long and very boring paper" at a scientific meeting in 1963.
 
-### The Ulam Spiral
+### 乌兰螺旋
 
-The Polish mathematician [Stanisław Ulam](bio:ulam) came up with a cool way to
-show the distribution of large prime numbers, while doodling during a _“long and
-very boring”_ meeting in 1963.
+波兰数学家[斯坦利斯·乌兰](bio:ulam)在1963年的一个_又长又无聊_的会议上涂鸦时，
+想到了个很酷的方法来展示大素数的分布.
 
     .number-grid.ulam-grid
       for x in [37, 36, 35, 34, 33, 32, 31]
@@ -531,72 +482,62 @@ very boring”_ meeting in 1963.
       for x in [43, 44, 45, 46, 47, 48, 49]
         .number-cell(data-display="visibility")= x
 
-We write down all integers in a rectangular grid, starting with 1 in the middle
-and then spiralling outwards. Then we highlight all numbers which are prime.
+我们把所有数字写在一个矩形格子中，从中间以1开始，然后向外螺旋展开。然后我们
+加亮突出显示所有的素数。
 
 ---
 > id: ulam1
 
-So far, the Ulam spiral doesn’t look particularly exciting. But if we zoom out,
-interesting patterns emerge. Here are the primes up to 160,000:
+到目前为止，乌兰姆螺旋线看起来并不特别令人兴奋。但如果我们缩小，有趣的模式就
+会出现。这是高达160,000时素数的分布样子:
 
     figure: img(src="images/ulam.png" width=399 height=399)
 
 ::: column.grow
-Rather than appearing randomly, as one might expect, it seems that certain
-diagonals are much more popular with primes than others. This creates a curious
-“plaid” pattern.
+正如人们所期望的那样，某些对角线似乎比其他对角线更受素数欢迎，而不是随机出现。
+这创造了一个奇怪的“格子”图案。
 
-_{.lgrey}It turns out that these diagonals all correspond to certain quadratic
-equations which seem to generate prime numbers more often than average. However
-it is unknown why that would be the case…_
+_{.lgrey}结果表明，这些对角线都对应于某些二次方程，这些方程似乎比平均数生成
+素数的频率更高。然而，尚不清楚为什么会是这样..._
 ::: column(width=200)
 
     x-media(lightbox credit="© Scientific American" width=200 height=272 src="images/magazine.jpg")
 
-{.caption} Cover of the March 1964 issue of Scientific American
+{.caption} 1964年3月版《科学美国人》的封面
 :::
 
 ---
 > id: goldbach1
 > goals: calculator
 
-### The Goldbach Conjecture
+### 哥德巴赫猜想
 
-In 1742, the German mathematician [Christian Goldbach](bio:goldbach) made a
-curious discovery: he noticed that all even integers (except 2) can be written
-as the sum of two prime numbers. For example, 8 = 5 + 3 and 24 = 13 + 11. This
-is quite surprising, because primes are defined using multiplication and factors
-– and shouldn’t have much to do with addition.
+在1742年, 德国数学家[克里斯蒂安·哥德巴赫](bio:goldbach) 遇到一个奇怪的发现:
+他注意到所有的偶数(2除外)都可以被写成两个素数的和。例如：8 = 5 + 3 和 24 = 13 + 11.
+这是非常令人惊讶的，因为素数是用乘法和因子定义的，不应该与加法有太多关系。 
 
     .calculator
-      h3 Goldbach Calculator
-      p Pick any even number, to calculate how it#[br]can be written as the sum of two primes.
+      h3 哥德巴赫计算器
+      p 任选一个偶数，算算它#[br]如何被写成两个素数的和.
       input(type="number", min=4, step=2)
       p.result.var ${result}
 
-Goldbach wrote about his observation in a letter to the famous mathematician
-[Leonhard Euler](bio:euler), but neither of them was able to prove it. It became
-known as the __Goldbach Conjecture__.
+哥德巴赫在给著名数学家[欧拉](bio:euler)的一封信中写到了他的观察结果，但两位
+数学家他们都无法证明这一点。它被称为__哥德巴赫猜想__。
 
-Computers have checked that the Goldbach Conjecture works for every even number
-up to 4 × 10<sup>18</sup> (that’s a 4 with 18 zeros), but mathematicians have still
-not found a proof that it works for _all_ even integers. And that is a big
-difference, because there are infinitely many integers, so we couldn’t possibly
-check all of them.
+计算机已经检查了哥德巴赫猜想对每一个最大可达4×10<sup>18</sup>(这是一个4后面18个
+零)的偶数都有效，但数学家们仍然没有找到它对_所有_偶数都有效的证明。这是一个很大
+的区别，因为有无限多的整数，所以我们不可能检查所有的整数。
 
-Its apparent simplicity made the Goldbach conjecture one of the most famous
-unsolved problems in mathematics.
+其明显的简单性使哥德巴赫猜想成为数学中最著名的未解决问题之一。
 
 ---
 > id: twin-primes
 
-### Twin Primes
+### 孪生素数
 
-We have already seen that prime numbers get more spread out as they get bigger.
-But they always seem to appear completely random, and occasionally we find two
-primes right next to each other, just one number apart: these are called __Twin
-Primes__.
+我们已经清楚素数随着整数变大而分散得越来越开。但它们总是看起来像完全随机的，偶
+尔我们还会发现两个素数紧挨着，就像一个整体：它们被称为__孪生素数__。
 
     p.text-center
       span.twin
@@ -627,26 +568,21 @@ Primes__.
         span.number-ball.green 1,523,651
         span.number-ball.green 1,523,653
 
-The largest known pair of twin primes has an incredible 58,711 digits! But are
-there infinitely many twin primes, just like there are infinitely many primes?
-Nobody knows – the _Twin Prime conjecture_ is another one of the many unsolved
-problems surrounding the primes.
+已知最大的一对孪生素数有惊人的58711位！但是有无限多的孪生素数吗，就像有无限多的
+素数一样？没有人知道答案 -- __孪生素数猜想__是围绕着素数的许多未解决问题中的另一个。
 
 ---
 > id: riemann
 > goals: zoom
-> title: Distribution of the Primes
+> title: 素数的分布
 
-### The Riemann Hypothesis
+### 黎曼猜想
 
-Mathematicians have spent many centuries exploring the pattern and distribution
-of prime numbers. They seem to appear completely randomly – sometimes there are
-huge gaps in between consecutive primes, and sometimes we find [twin
-primes](gloss:twin-primes) right next to each other.
+数学家们花费了许多个世纪来探索素数的模式和分布。它们看起来完全是随机的——有时连
+续的素数之间有巨大的间隙，而有时我们又会发现紧挨着的[孪生素数](gloss:twin-primes)。
 
-When only 15 years old, the German mathematician [Carl Friedrich Gauss](bio:gauss)
-had a groundbreaking new idea: he counted the number of primes up to a certain
-point, and showed the results in a chart:
+当德国数学家[卡尔·弗里德里希·高斯](bio:gauss)15岁的时候，他有了一个开创性的新
+想法：他把素数个数计算到某一点，并将结果显示在图表中：
 
     figure(style="max-width:680px; position:relative;")
       svg(width=680 height=300 viewBox="0 0 680 300")
@@ -659,64 +595,54 @@ point, and showed the results in a chart:
       .zoom-icon: svg(viewBox="0 0 32 32" class="icon" width=32 height=32)
         use(xlink:href="/icons.svg#search")
 
-Along the x-axis you can see all integers. Whenever there is a prime, the
-_{span.m-blue}Prime Counting Function_ (shown in __{.m-blue}blue__) increases by
-one. As we [zoom out](->#riemann_.zoom-icon), the blue line becomes very smooth.
-Gauss noticed that the shape of this function looks very similar to the function
-_{span.m-red}`x/(log(x))`_ (shown in __{.m-red}red__). He predicted that the two
-functions are always “approximately similar”, and this was proven in 1896.
+沿x轴可以看到所有整数。当有素数时，_{.m-blue}素数计数_增加1。当我们[缩小](->#riemann_.zoom-icon)图时，蓝线变得非常平滑。
+
+{.reveal(when="zoom")}高斯注意到这个函数的形状看起来和函数<mfrac class="m-red"><mi>x</mi><mrow>log(<mi>x</mi>)</mrow></mfrac>非常相似. 他预言这两个函数总是“近似相似”，
+这在1896年得到了证明。
 
 ---
 > id: riemann1
-> title: The Riemann Hypothesis
+> title: 黎曼猜想
 
-However, as you can see above, there is still a significant error between the
-actual number of primes, and Gauss’s approximation. In 1859, the mathematician
-[Bernhard Riemann](bio:riemann) discovered an approximation that looked much
-better, but he wasn’t able to prove that that would _always_ work. His idea
-became known as the __Riemann Hypothesis__.
+然而，正如您在上面看到的，在实际素数和高斯近似值之间仍然有一个很大的误差。
+1859年，数学家[伯恩哈德·黎曼](bio:riemann)发现了一种看起来更好的近似方法，
+但他无法证明这种方法总是有效的。他的想法被称为__黎曼猜想__。
 
-Hundreds of mathematicians have tried to prove Riemann’s hypothesis, but all
-without success. It is often considered one of the most difficult and most
-important unsolved problems in mathematics. In 2000, the Clay Mathematics
-Institute named it one of six [__Millennium Prize Problems__](gloss:millennium-prize)
-and promised $1,000,000 to any mathematician who solves it.
+数以百计的数学家试图证明黎曼猜想，但都没有成功。它通常被认为是数学中最困难和
+最重要的未解决问题之一。2000年，克莱数学研究所称它为六个[__千年奖难题__](gloss:millennium-prize)之一, 并承诺给任何解决这个问题的数学家100万美元奖励。
 
 ---
 > id: race
 > goals: race
 > section: least-common-multiple
 
-## Least Common Multiples
+## 最小公倍数
 
-Two runners are training on a circular racing track. The __{.m-blue}first runner__
-takes __{.m-blue}60__ seconds for one lap. The __{.m-green}second runner__ only
-takes __{.m-green}40__ seconds for one lap. If both leave at the same time from
-the start line, when will they meet again at the start?
+两个跑步者正在环形跑道上训练。__{.m-blue}第一个跑步者__跑一圈需要__{.m-blue}60__
+秒，__{.m-blue}第二个跑步者__跑一圈需要__{.m-blue}40__秒。如果两人同时从起跑线
+上出发，他们什么时候会在起跑线上再次相遇？
 
     figure: include svg/race.svg
 
 ---
 > id: race1
 
-This question really isn’t about the geometry of the race track, or about
-velocity and speed – it is about multiples and divisibility.
+这个问题实际上不是关于赛道的几何学，也不是关于速度和快慢的，而是关于倍数和整
+除的。
 
-The first runner crosses the start line after 60s, 120s, 180s, 240s, and so on.
-These are simply the [[multiples|factors]] of __{.m-blue}60__. The second runner
-crosses the start line after 40s, 80s, 120s, 160s, and so on. The first time
-both runners are back at the start line is after [[120]] seconds.
+第一个选手在60秒、120秒、180秒、240秒等后穿过起跑线，这些只是__60__的[[倍数|因子]]。
+第二个选手在40秒、80秒、120秒、160秒等后穿过起跑线。两位选手同时第一次回到起
+跑线上是在[[120]]秒之后。
 
-{.reveal(when="blank-0 blank-1")} What we’ve just found is the smallest number
-which is both a multiple of __{.m-green}40__ and a multiple of __{.m-blue}60__.
-This is called the __least common multiple__ or __lcm__.
+{.reveal(when="blank-0 blank-1")}我们找到的是个同时是__{.m-green}40__ 和__{.m-blue}60__
+倍数的最小数，这也被称为__最小公倍数__或缩写为__lcm__.
 
 ---
 > id: race2
 
-To find the lcm of any two numbers, it is important to realise that if
-__{.m-yellow}a__ divides __{.m-blue}b__, then __{.m-blue}b__ needs to have all
-the prime factors of __{.m-yellow}a__ (plus some more):
+求任意两个数__{.m-yellow}a__和__{.m-blue}b__最小公倍数，如果__{.m-yellow}a__
+整除 __{.m-blue}b__, 那么很重要的一点是要认识到__{.m-blue}b__必须具有__{.m-yellow}a__
+的所有素数因子(外加其它的):
 
     table.table-tiny
       tr
@@ -740,15 +666,14 @@ the prime factors of __{.m-yellow}a__ (plus some more):
           | &nbsp;×&nbsp;
           .number-ball.l-blue 5
 
-This is easy to verify: if a prime factor divides __{.m-yellow}a__, and
-__{.m-yellow}a__ divides __{.m-green}b__, then that prime factor must _also_
-divide __{.m-green}b__.
+这很容易验证：如果一个素数因子整除__{.m-yellow}a__，同时__{.m-yellow}a__整除
+__{.m-blue}b__，那么该素数因子一定__也__整除__{.m-green}b__。
 
 ---
 > id: race3
 
-To find the lcm of __{.m-green}40__ and __{.m-blue}60__, we first need to find
-the [prime factorisation](gloss:factorisation) of both:
+为了找到__{.m-green}40__和__{.m-blue}60__的最小公倍数, 我们首先数需要找到两者
+的共有[素数因子](gloss:factorisation):
 
     table.table-tiny
       tr
@@ -772,40 +697,39 @@ the [prime factorisation](gloss:factorisation) of both:
         td: | ×
         td: .number-ball.l-green 5
 
-Suppose that __{.m-red}X__ is the lcm of __{.m-green}40__ and __{.m-blue}60__.
-Then __{.m-green}40__ divides __{.m-red}X__, so _{span.number-ball.small.l-blue}2_,
-_{span.number-ball.small.l-blue}2_, _{span.number-ball.small.l-blue}2_ and
-_{span.number-ball.small.l-blue}5_ must be prime factors of __{.m-red}X__. Also,
-__{.m-blue}60__ divides __{.m-red}X__, so __{span.number-ball.small.l-green}2__,
-_{span.number-ball.small.l-green}2_, _{span.number-ball.small.l-green}3_ and
-_{span.number-ball.small.l-green}5_ must be prime factors of __{.m-red}X__.
+假设__{.m-red}X__是__{.m-green}40__和__{.m-blue}60__的最小公倍数。那么
+__{.m-green}40__整除__{.m-red}X__，所以_{span.number-ball.small.l-blue}2_，
+_{span.number-ball.small.l-blue}2_，_{span.number-ball.small.l-blue}2_和
+_{span.number-ball.small.l-blue}5_必定是__{.m-red}X__的素数因子。同理，
+__{m.blue}60__整除__{.m-red}X__，所以_{span.number-ball.small.l-green}2_,
+_{span.number-ball.small.l-green}2_,和_{span.number-ball.small.l-green}3_
+和_{span.number-ball.small.l-green}5_必定是__{.m-red}X__的素数因子。
 
 ---
 > id: race4
 
-To find __{.m-red}X__, we simply combine all the prime factors of __{.m-green}40__
-and __{.m-blue}60__, but any duplicates we only need once:
+要找到__{.m-red}X__，我们只需将__{.m-green}40__和__{.m-blue}60__的所有素数因子
+组合在一起，但是两边出现相同因子时我们只需要一份：
 
 {.text-center} __{.m-red}X__ &nbsp;=&nbsp; _{span.number-ball.l-blue-green}2_ ×
 _{span.number-ball.l-blue-green}2_ × _{span.number-ball.l-blue}2_ ×
 _{span.number-ball.l-green}3_ × _{span.number-ball.l-blue-green}5_
 
-This gives us that __{.m-red}X__ = 120, just like we saw above. Notice that if
-the same prime factor appears multiple times, like 2 above, we need to keep the
-maximum occurrences in one of the two numbers (3 times in __{.m-green}40__ is
-more than 2 times in __{.m-blue}60__).
+我们从这得到__{.m-red}X__ = 120，就像我们看到的上图。注意，如果相同的素数因子出
+现多次，如上面的2，我们需要保持两个次数中最大的那个次数(__{.m-green}40__中的
+3次比__{.m-blue}60__中的2次多）。
 
 ---
 > id: race5
 
-Now we have a simple method for finding the lcm of two numbers:
+现在我们有了一个简单的方法来查找两个数字的最小公倍数：
 
     ol.proof
-      li Find the prime factorisation of each number.
-      li Combine all prime factors, but only count duplicates once.
+      li 找出每个数的素数因子。
+      li 将所有数素因子组合起来，但重复出现的只算一次。
 
-We can use the same method to find the lcm of three or more numbers at once,
-like __{.m-blue}12__, __{.m-green}30__ and __{.m-yellow}45__:
+我们可以使用相同的方法找到三个或更多数的最小公倍数，如__{.m-blue}12__、
+__{.m-green}30__和__{.m-yellow}45__：
 
     table.table-tiny
       tr
@@ -834,15 +758,14 @@ like __{.m-blue}12__, __{.m-green}30__ and __{.m-yellow}45__:
         td: | ×
         td: .number-ball.l-yellow 5
 
-Therefore the lcm of __{.m-blue}12__, __{.m-green}30__ and __{.m-yellow}45__ is
+因此__{.m-blue}12__, __{.m-green}30__ 和 __{.m-yellow}45__的最小公倍数是
 2 × [[2]] × 3 × 3 × [[5]] = 180.
 
 ---
 > id: race6
 
-A special case are prime numbers: the lcm of two different primes is simply 
-their [[product|sum|difference]], because they don’t have any common prime
-factors which would get “canceled”.
+一个特例是质数：两个不同质数的最小公倍数是它们简单的求[[积|和|差]], 因为它们没
+有任何共同的数素因子会被“消去”。
 
     //- TODO Exercises
 
@@ -850,30 +773,27 @@ factors which would get “canceled”.
 > id: gcd
 > section: greatest-common-factor
 
-## Greatest Common Factors
+## 最大公约数
 
-An architect is planning the floor for a large courtyard that measures 18m by
-30m. She wants it to be covered in quadratic tiles, without any gaps or overlaps
-along the sides. What is the largest size of squares she can use?
+一位建筑师正在为一个18米乘30米的大庭院规划地板，她希望它被正方形瓷砖覆盖，长宽
+两个方向没有任何间隙和重叠。她能用正方形的最大尺寸是多少？
 
     figure
       include svg/floorplan.svg
-      p.text-center.md The tiles have a size of ${x}{x|3|1,18,1}m.#[br]#[span.result.var]
+      p.text-center.md 瓷砖尺寸:${x}{x|3|1,18,1}m.#[br]#[span.result.var]
 
 ---
 > id: gcd1
 
-Just like before, this question is not about geometry - it is about
-divisibility. The length of the sides of the tiles has to divide both 18 and 30,
-and the largest possible number with that property is [[6]]. This is called the
-__Greatest Common Divisor__ or __gcd__ of 18 and 30.
+就像之前一样，这个问题不是关于几何的 - 而是关于能否整除的。瓷砖的两个边长必
+须同时整除18和30，那么最大可能的数是[[6]]。这被称为18和30的__最大公约数__或
+简写为gcd。
 
 ---
 > id: gcd2
 
-Once again, we can use the [prime factorisation](gloss:factorisation) to
-calculate the gcd of any two numbers. Remember that any divisor of a number
-must have some of the prime factors of that number.
+我们可以再次使用[素数因子](gloss:factorisation)来计算两个数的最大公约数。记住，
+一个数的除数必定包含有这个数的部分素数因子。
 
     table.table-tiny
       tr
@@ -893,18 +813,18 @@ must have some of the prime factors of that number.
         td(colspan=3): | ×
         td: .number-ball.l-green 5
 
-Suppose that __{.m-red}X__ is the gcd of __{.m-green}18__ and __{.m-blue}30__.
-Then __{.m-red}X__ divides __{.m-green}18__ so the prime factors of __{.m-red}X__
-must be among _{span.number-ball.small.l-blue}2_, _{span.number-ball.small.l-blue}3_
-and _{span.number-ball.small.l-blue}3_. Also, __{.m-red}X__ divides __{.m-blue}30__
-so the prime factors of __{.m-red}X__ must be among _{span.number-ball.small.l-green}2_,
-_{span.number-ball.small.l-green}3_ and _{span.number-ball.small.l-green}5_.
+假设__{.m-red}X__是__{.m-green}18__和__{.m-blue}30__的最大公约数.那么__{.m-red}X__
+整除__{.m-green}18__, 因此__{.m-red}X__的素数因子也在_{span.number-ball.small.l-blue}2_,
+_{span.number-ball.small.l-blue}2_和_{span.number-ball.small.l-blue}3_中。同理,
+__{.m-red}X__ 整除__{.m-blue}30__, 因此__{.m-red}X__的素数因子也在
+_{span.number-ball.small.l-green}2_, _{span.number-ball.small.l-green}3_ 和
+_{span.number-ball.small.l-green}5_中。
 
 ---
 > id: gcd3
 
-To find __{.m-red}X__, we simply need to multiply all numbers which are  prime
-factors of [[both|one of]] __{.m-green}18__ and __{.m-blue}30__:
+要找到__{.m-red}X__，我们只需要将所有在__{.m-green}18__和__{.m-blue}30__中
+[[都|其一]]出现的素数相乘：
 
 {.text-center} __{.m-red}X__ &nbsp;=&nbsp; _{span.number-ball.l-blue-green}2_ ×
 _{span.number-ball.l-blue-green}3_ &nbsp;=&nbsp; 6.
@@ -912,108 +832,92 @@ _{span.number-ball.l-blue-green}3_ &nbsp;=&nbsp; 6.
 ---
 > id: gcd4
 
-Now we have a simple method for finding the gcd of two numbers:
+现在我们有了一个简单的方法来找两个数的最大公约数：
 
     ol.proof
-      li Find the prime factorisation of each number.
-      li Multiple the prime factors which are in both numbers.
+      li 找到每个数的素数因子。
+      li 将两个数里都出现的素数因子相乘。
 
-Once again prime numbers are special: the gcd of two different primes is always
-[[1]], because they don’t share any prime factors.
+素数又一次是特殊的：两个不同质数的最大公约数总是[[1]], 因为它们不共有任何素数因子。
 
 ---
 > id: cicadas
 > goals: bound-low bound-high
 > section: real-life-applications
 
-## Real Life Applications
+## 实际应用
 
-### Cicadas
+### 蝉
 
 ::: column.grow
-North America is home to various broods of cicadas. These have the curious
-property that they only emerge every few years during the summer to breed – the
-remaining time they spend underground.
+北美是各种各样的蝉群的家园。这些蝉有一种奇特的特性，即它们每隔多年的夏季才出
+来繁殖——剩余时间它们在地下度过。
 
-For example, the cicadas in Florida and Mississippi appear every 13 years. The
-cicadas in Illinois and Iowa only appear every 17 years. But there are no
-cicadas with 12, 14, 15 or 16 year cycles.
+例如，佛罗里达州和密西西比州的蝉每13年出现一次。伊利诺斯州和爱荷华州的蝉只每
+17年出现一次。但是没有一种蝉有12年、14年、15年或16年的出现周期。
 ::: column(width=360)
 
     x-media(width=360 height=240 src="images/cicadas.jpg")
 
 :::
 
-Both 13 and 17 are prime numbers – and that has a very good reason. Imagine that
-there are predators in the forest which kill cicadas. These predators also
-appear in regular intervals, say every 6 years.
+13和17都是质数 - 这是有充分理由的。想象一下森林里有捕食者杀死了蝉。这些捕食者
+也会定期出现，比如每6年出现一次。
 
-Now imagine that a brood of cicadas appears every ${n}{n|13|4,20,1} years
-(${isPrime(n) ? 'prime' : 'not prime'}). The two animals would meet every
-${lcm(n,6)} years, which is the [[lcm|gcd|product]] of 6 and ${n}.
+现在想象下蝉的出现间隔是每${n}{n|13|4,20,1}年(${isPrime(n) ? '素数' : '非素数'})。
+这两种动物每${lcm(n,6)}年会相遇一次，这就是6和${n}的[[最小公倍数|最大公约数|乘积]]
 
     figure
       include svg/cicadas.svg
-      p.caption Time until cicadas and predators meet, for various different cicada cycle lengths.
+      p.caption 不同的蝉出现周期长度, 决定了蝉和捕食者相遇的时间。
 
 ---
 > id: cicadas1
 
-This number seems to be much larger if the cicada cycle is a prime number like
-13 and 17. That’s because prime numbers don’t share any factors with 6, so
-when calculating the lcm we don’t cancel any duplicate factors.
+如果蝉的间隔周期是像13和17这样的质数，这个数字看起来就要大得多。这是因为素数
+不与6共有任何因子，所以在计算最小公倍数时，我们不会消去任何重复因子。
 
-Of course, cicadas have no idea what prime numbers are – but over millions of
-years, evolution has worked out that prime cycles are the safest. The predator
-animal seems to have gone extinct over time, but the prime number cycles remain.
+当然，蝉不知道素数是什么，但在数百万年的时间里，进化证明了素数周期是最安全的。
+捕食者似乎已经随着时间的推移而灭绝，但素数周期仍然存在。
 
     //- TODO Exercises
 
 ---
 > id: crypto
 
-### Cryptography
+### 密码学
 
 ::: column.grow
-One of the most important modern applications of prime numbers is in a field of
-mathematics called __Cryptography__. For thousands of years, people have tried
-to conceal messages so that only the intended recipient could read them – this
-is called encryption. It is used by everyone from generals exchanging secret
-orders during wars to personal emails or online banking details.
+素数在现代最重要的应用之一是在一个称为__密码学__的数学领域。数千年来，人们一
+直试图隐藏信息，以便只有预期的接收者才能读懂它们 —— 这被称为加密。每个人都在
+使用加密学，从将军们在战争中交换秘密命令到个人电子邮件或网上银行信息。
 
-People always tried to come up with better, more secure encryption methods, but
-after some time, they were all broken using yet more advanced algorithms. In the
-Second World War, the German army used the Enigma: a complex machine consisting
-of a keyboard, rotating wheels and plugs. It encrypted messages using one of 158
-million million million possibilities (that’s a 158 followed by 18 zeros!). The
-code was widely believed to be unbreakable, but the British Secret Service, led
-by mathematician Alan Turing, built some of the first computers that managed to
-decode it.
+人们总是试图想出更好、更安全的加密方法，但一段时间后，他们都被更先进的算法打
+破了。在第二次世界大战中，德国军队使用了一种称为“谜”的设备：由键盘、旋转的轮
+子和插头组成的复杂机器。它使用了1.58万亿亿(即158后面是18个零!)个可能性中的一
+个来加密消息，人们普遍认为密码是不可破解的。但由数学家阿兰·图灵领导的英国特勤
+局，制造了首批成功破译密码的计算机。
 ::: column(width=240)
 
     x-media(lightbox credit="Magnus Manske, via Wikipedia" width=240 height=344 src="images/enigma.jpg")
-    p.caption German four-rotor Enigma machine
+    p.caption 德国四转子加密机
 
 :::
 
-Today’s computers are much more advanced, capable of trying millions of
-possibilities every second. To develop better encryption algorithms, you have to
-find a mathematical operation that is difficult even for powerful computers.
-Computers are incredibly fast at addition, subtraction, multiplication and
-division. However, as it turns out, computers are very slow at factorising
-large integers into primes…
+今天的计算机更先进，每秒能尝试数百万种可能性。为了开发更好的加密算法，你必须
+找到一个对强大的计算机来说也很困难的数学运算。计算机在加法、减法、乘法和除法
+方面速度惊人。然而，事实证明，计算机将大整数分解成素数的速度非常慢…
 
 ---
 > id: crypto1
 
-{.todo} COMING SOON – RSA example with Alice and Bob
+{.todo} 敬请期待 – Alice和Bob的RSA示例
 
-This encryption algorithm is called __RSA Cryptography__, after its three
-inventors, Ron Rivest, Adi Shamir and Leonard Adleman who published it in 1977.
-It turns out that a very similar method was known to the British Secret Service
-since 1973, but remained classified until much later.
+这种加密算法被称为__非对称加密算法__，它的三位发明者: Ron Rivest，Adi Shamir和
+Leonard Adleman于1977年发表了这一算法，三人名字的缩写__RSA__被用来作为该算法
+的名字。事实证明，自1973年以来，英国特勤局就掌握了一种非常相似的方法，但一直保
+密到很晚。
 
-Today, prime numbers are used by computers all over the world to exchange data.
-As you browse the internet or send chat messages, your phone or laptop will
-quietly generate large prime numbers and exchange public keys with other
-computers.
+今天，世界各地的计算机交在换数据中都使用了素数。每当你发送电子邮件或访问一个
+安全的网站，你的手机或笔记本电脑就会默默地生成许多大素数，并与其他计算机交换
+公共密钥。

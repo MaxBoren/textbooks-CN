@@ -11,9 +11,9 @@ html
       svg { margin: 0 auto; display: block; }
       h1 { font-size: 44px; }
       h2 { font-size: 32px; margin-top: -24px; font-weight: 400; opacity: 0.6; }
-      a { display: inline-block; background: #ccc; border-radius: 4px; padding: 8px 12px; color: #242436; }
-      a:hover { background: #aaa; }
-
+      p a { display: inline-block; background: #ccc; border-radius: 4px; padding: 8px 12px; color: #242436; }
+      p a:hover { background: #aaa; }
+      li a { display: inline-block; background: #eee; border-radius: 2px; padding: 2px 3px; margin-bottom:5px; color: #242436; }
   body
     #body
       svg(viewBox="0 0 180 180", class="icon", width=180, height=180)
@@ -21,4 +21,25 @@ html
       h1 Mathigon
       h2 开发服务器
       p: a(href="https://github.com/mathigon/textbooks" target="_blank") 中文文档
-      p: a(href="https://github.com/mathigon/textbooks" target="_blank") Documentation
+      //- p: a(href="https://github.com/mathigon/textbooks" target="_blank") Documentation
+      p 课程目录
+      ul
+        li: a(href="/course/chaos" target="") chaos
+        li: a(href="/course/circles-and-pi" target="") 圆和圆周率
+        li: a(href="/course/codes-and-ciphers" target="") codes-and-ciphers
+        li: a(href="/course/divisibility-and-primes" target="") 整除和素数
+        li: a(href="/course/euclidean-geometry" target="") euclidean-geometry
+        li: a(href="/course/exploding-dots" target="") exploding-dots
+        li: a(href="/course/exponential-and-rational" target="") exponential-and-rational
+        li: a(href="/course/functions" target="") functions
+        li: a(href="/course/graphs-and-networks" target="") graphs-and-networks
+        li: a(href="/course/non-euclidean-geometry" target="") non-euclidean-geometry
+        li: a(href="/course/polygons-and-polyhedra" target="") polygons-and-polyhedra
+        li: a(href="/course/probability" target="") probability
+        li: a(href="/course/quadratics" target="") quadratics
+        li: a(href="/course/sequences" target="") sequences
+        li: a(href="/course/transformations-and-symmetry" target="") transformations-and-symmetry
+        li: a(href="/course/triangles-and-trigonometry" target="") triangles-and-trigonometry
+
+
+          
