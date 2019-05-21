@@ -1,58 +1,47 @@
-# Mathigon Textbooks
+# Mathigon Textbooks - 中文版
+
+This is the Translation Project of [Mathigon](https://github.com/mathigon/textbooks).Here is the Link of Official Hompage [mathigon.org](https://mathigon.org)
 
 ![](https://mathigon.org/images/hero.png)
 
-Welcome to [Mathigon](https://mathigon.org)! This repository contains the source
-code and assets for all our interactive textbooks.
+欢迎来到 [Mathigon](https://mathigon.org)! 这个项目包含所有交互课程的源代码和资源。
 
-Mathigon is an award winning new mathematics education platform for students
-aged 12 to 18. Part textbook and part virtual personal tutor, it uses
-cutting-edge technology and an innovative new curriculum to make learning
-mathematics more fun and more interactive.
+Mathigon 是屡获殊荣适用12-18岁学生的新型数学教育平台。其中课程和虚拟教师使用了先进的技术
+和创新的课程设计，使学习数学更加有趣，更具交互性。
 
 ![](https://mathigon.org/images/unused/divider-1.png)
 
 
 ## Getting Started
 
-After forking and cloning this repository, install all dependencies using
-`npm install`.
+在fork和clone后，使用`npm install`安装依赖。
 
-Now you can start a local development server by running `npm start`. Wait for
-the assets to be compiled and then open [localhost:5000](http://localhost:5000).
-The server will automatically watch for file changes.
+创建本地开发环境请使用 `npm start`.等待启动后打开 [localhost:5000](http://localhost:5000).
+该项目支持热加载。
 
-Every course is a subfolder in the [content](content) directory. The URL of the
-[Probability course](content/probability), for example, will be
-[localhost:5000/course/probability](http://localhost:5000/course/probability).
+所有的课程均位于[content](content)目录下的子文件夹。 例如概率课程(probability)，文件目录为：
+[Probability course](content/probability)， 则您可以从本地通过
+[localhost:5000/course/probability](http://localhost:5000/course/probability)打开。
 
 ![](https://mathigon.org/images/unused/divider-2.png)
 
 
 ## Course Structure
 
-Every course consists of a few different components:
+所有的课程由以下组件构成：
 
-* `content.md` contains the source code and metadata for a course. It is
-  written in a [custom extension](https://mathigon.io/markdown) of
-  [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
-* `functions.js` contains all course-specific JavaScript code.
-* `styles.less` contains all course-specific styles, in
-  [LESS](http://lesscss.org/) format.
-* `hints.yaml` (optional) contains any messages that can be sent by Mathigon's
-  virtual personal tutor.
-* `concepts.yaml` (optional) contains parts of Mathigon's internal knowledge
-  tree for this topic.
+* `content.md` 包含课程的，源代码和元数据。文档请参照[custom extension](https://mathigon.io/markdown),
+  Markdown文档请参照[Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)。  
+* `functions.js` 包含本课程专用的Javascript代码。
+* `styles.less` 包含本课程专用的样式，使用了[LESS](http://lesscss.org/)。
+* `hints.yaml` (可选) 包含Mathigon虚拟教师发送的通知消息。
+* `concepts.yaml` (可选) 包含Mathigon本课程的内部知识树。
 
-The [shared directory](content/shared) contains biographies, glossary and assets
-used by multiple courses.
+[shared directory](content/shared)文件夹包含了多个课程共享的文档，多语言以及资源。
 
-Every course is divided into multiple steps, each with a unique ID. These IDs
-are used as function names in `functions.js` when exporting the setup code
-for every section.
+每个课程都被分为多个步骤，每个步骤都有一个唯一ID。这些ID会在每个部分开始时作为`functions.js`中的函数识别并设置使用。
 
-The [server directory](server) contains a simplified version of Mathigon's web
-server. It is used for local testing, but should not usually be modified.
+[server directory](server) 目录是一个简单的Mathigon web服务器，它被用来进行本地测试，但不应该经常被改动。
 
 ![](https://mathigon.org/images/unused/divider-3.png)
 
